@@ -4,9 +4,7 @@ const mongoose = require('mongoose');
 
 describe('Deleting a user', () => {        
     let a;
-
     beforeEach((done) => {
-
         a = new User({name: 'Ayou'});
         a.save()
         .then(() => done());
@@ -30,14 +28,13 @@ describe('Deleting a user', () => {
         });
     });
 
-    it('class method findAndDelete', (done) => {
+    it('class method findOneAndDelete', (done) => {
         User.findOneAndDelete({ _id: a._id })
-        .then(() => User.findOne({ _id: a._id }))
+        .then(() => User.findOne({ name: 'Ayou' }))
         .then((user) => {
             assert(user === null);
             done();
-        });
-        
+        });        
     });
 
     it('class findByIdAndDelete', (done) => {

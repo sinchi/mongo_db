@@ -19,8 +19,8 @@ describe('Reading users out of the db', () => {
         .then(users => {            
             assert(users[0]._id.toString() === ay._id.toString());
             done();
-        })
-    })
+        });
+    });
 
     it('Should find user with id', (done) => {                
         User.findOne({_id: ay._id})
@@ -29,8 +29,6 @@ describe('Reading users out of the db', () => {
             done();
         });
     }); 
-
-    
 
 });
 

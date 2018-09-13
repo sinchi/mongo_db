@@ -8,6 +8,6 @@ describe('Creating records', _ => {
       .then( _ => {
         assert(!user.isNew);
         done();
-      })
+      });
     });    
 });
