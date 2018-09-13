@@ -8,20 +8,29 @@ describe('Reading users out of the db', () => {
     beforeEach((done) => {
         ay = new User({ name: 'Ayou' });
         ay.save()
-        .then( newUser => {
-            console.log('Create New User ', newUser);    
+        .then( newUser => {            
             done();        
         });
     });
 
-    it('Should find user with id', (done) => {        
+
+    it('Should find all users from the db', (done) => {
         User.find({name: 'Ayou'})
-        .then( users => {
-            console.log('USERS', users);
+        .then(users => {            
             assert(users[0]._id.toString() === ay._id.toString());
             done();
-        })         
+        })
+    })
+
+    it('Should find user with id', (done) => {                
+        User.findOne({_id: ay._id})
+        .then(user => {
+            assert(ay._id.toString() === user._id.toString());            
+            done();
+        });
     }); 
+
+    
 
 });
 
