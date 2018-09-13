@@ -9,5 +9,5 @@ describe('Creating records', _ => {
         assert(!user.isNew);
         done();
       })
-    });
+    });    
 });
