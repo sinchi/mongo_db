@@ -7,8 +7,15 @@ before((done) => {
     .on('error', err => console.warn('Error: ', err));
 });
 
-beforeEach( done => mongoose.connection.collections.users.drop(() => {    
-    done();
-}));
+beforeEach( (done) => {
+    const { users, comments, blogposts } = mongoose.connection.collections;
+   users.drop(() => {
+       comments.drop(() => {
+           blogposts.drop(() => {
+               done();
+           });
+       });
+   });
+});
 
 
